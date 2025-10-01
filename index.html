@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfumes Fresh</title>
+    <link rel="icon" type="image/png" href="img/Logo.jpeg">
+
+    <!-- SWIPER CSS--> 
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+     <!--CSS STYLE-->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fuente de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> 
+
+    <!--ICONOS REDES-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+            <img src="img/Logo.jpeg" alt="Perfumes Fresh" class="logo-img">
+            <span class="logo-text">Perfumes Fresh</span>
+        </div>
+
+            <ul class="menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>        
+        </nav>
+    </header>
+
+
+
+    <!-- INICIO -->
+
+    <section id="inicio" class="hero">
+
+        <div class="hero-content">
+
+            <h1>F R E S H, Vive Fresco, vive FRESH</h1>
+            <p>Perfumes únicos para cada personalidad</p>
+            <a href="#catalogo" class="btn">Ver Catálogo</a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- BANNER DESTACADOS -->
+
+    <section class="destacados">
+      <h2>Perfumes Destacados</h2>
+
+      <div class="swiper destacados-swiper">
+        <div class="swiper-wrapper">
+
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <img src="img/Perfume1.jpg" alt="Perfume 1">
+            <h3>Bharara Pharaoh Ramesses 100ml</h3>
+            <a class="btn-wapp">Pedir</a>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <img src="img/Perfume2.jpg" alt="Perfume 2">
+            <h3>Kaiak URBE 100ml</h3>
+            <a class="btn-wapp">Pedir</a>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <img src="img/Perfume3.jpg" alt="Perfume 3">
+            <h3>Bleu Nigth 100ml</h3>
+            <a class="btn-wapp">Pedir</a>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="swiper-slide">
+            <img src="img/Perfume4.jpg" alt="Perfume 4">
+            <h3>Natural Energy 50Ml</h3>
+            <a class="btn-wapp">Pedir</a>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="swiper-slide">
+            <img src="img/Perfume5.jpg" alt="Perfume 5">
+            <h3>Hubo Boss BLACK</h3>
+            <a class="btn-wapp">Pedir</a>
+          </div>
+
+          <!-- Slide 6 -->
+          <div class="swiper-slide">
+            <img src="img/Perfume6.jpg" alt="Perfume 6">
+            <h3>Acqua di gio</h3>
+            <a class="btn-wapp">Pedir</a>
+          </div>
+
+          <!-- Slide 7 -->
+          <div class="swiper-slide">
+            <img src="img/Perfume7.jpg" alt="Perfume 7">
+            <h3>BOMBSHELL 100ml</h3>
+            <a class="btn-wapp">Pedir</a>
+          </div>
+
+          <!-- Slide 8 -->
+          <div class="swiper-slide">
+            <img src="img/Perfume8.jpg" alt="Perfume 8">
+            <h3>Infini Elixir Maison Alhambra</h3>
+            <a class="btn-wapp">Pedir</a>
+          </div>
+
+        </div>
+
+        <!-- Flechas -->
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+        <!-- Paginación -->
+
+        <div class="swiper-pagination"></div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CATÁLOGO -->
+
+    <section id="catalogo">
+
+        <h2>Catálogo de Perfumes</h2>
+
+        <div class="filtros">
+
+            <button data-filter="todos">Todos</button>  
+            <button data-filter="hombre">Hombre</button>
+            <button data-filter="mujer">Mujer</button>
+            <button data-filter="unisex">Unisex</button>
+
+        </div>
+
+        <div class="productos">
+
+            <!-- CATEGORIA HOMBRE -->
+
+            <div class="producto" data-category="hombre">
+
+                <img src="img/Perfume8.jpg" alt="Perfume8 ejemplo">
+                <h3>Infini Elixir Maison Alhambra</h3>                
+                <a class="btn-wapp">Pedir</a>
+            </div>
+
+            <div class="producto" data-category="hombre">
+                <img src="img/Perfume1.jpg" alt="Perfume 1">
+                <h3>Bharara Pharaoh Ramesses 100ml</h3>                
+                <a class="btn-wapp">Pedir</a>
+            </div>
+
+            <div class="producto" data-category="hombre">
+                <img src="img/Perfume2.jpg" alt="Perfume 2">
+                <h3>Kaiak URBE 10ML</h3>                
+                <a class="btn-wapp">Pedir</a>
+            </div>
+
+            <div class="producto" data-category="hombre">
+                <img src="img/Perfume3.jpg" alt="Perfume 3">
+                <h3>Bleu Nigth 100ml</h3>                
+                <a class="btn-wapp">Pedir</a>
+            </div>
+
+            <div class="producto" data-category="hombre">
+                <img src="img/Perfume4.jpg" alt="Perfume 4">
+                <h3>Natural Energy 50Ml</h3>                
+                <a class="btn-wapp">Pedir</a>
+            </div>
+
+            <div class="producto" data-category="hombre">
+                <img src="img/Perfume5.jpg" alt="Perfume 5">
+                <h3>Hugo Boss BLACK</h3>                
+                <a class="btn-wapp">Pedir</a>
+            </div>
+
+            <div class="producto" data-category="hombre">
+                <img src="img/Perfume6.jpg" alt="Perfume 6">
+                <h3>Acqua di gio</h3>                
+                <a class="btn-wapp">Pedir</a>
+            </div>
+        
+            <!-- CAT HOMBRE -->
+
+            <div class="producto" data-category="mujer">
+                <img src="img/Perfume7.jpg" alt="Perfume 7">
+                <h3>BOMBSHELL 10ml</h3>                
+                <a class="btn-wapp">Pedir</a>
+            </div>
+
+            <div class="producto" data-category="unisex">
+                <img src="img/Perfume9.jpg" alt="Perfume 9">
+                <h3>EMEER LATTAFA 100ml</h3>                
+                <a class="btn-wapp">Pedir</a>
+            </div>            
+            
+        </div>
+
+    </section>
+
+
+
+    <!-- SERVICIOS -->
+
+    <section id="servicios">
+
+        <h2>Servicios</h2>
+
+        <ul>
+
+            <li>🚚 Envío gratis en el Valle de Aburrá</li>
+            <li>📦 Envíos nacionales, consulta nuestros terminos y condiciones</li>
+            <li>📦 Tambien contamos con servicio contraentrega</li>
+            <li> Contamos con el servicio de ADDI</li>
+
+        </ul>
+
+    </section>
+
+
+
+    <!-- FORMULARIO DE PEDIDO -->
+
+    <section id="pedido">
+
+        <h2>Formulario de Pedido</h2>
+
+        <form id="formPedido">
+
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
+            <input type="text" name="perfumes" placeholder="Perfumes deseados" required>
+            <input type="text" name="numero de contacto" placeholder="Numero de Contacto" required>
+            <input type="text" name="ubicacion" placeholder="Ubicación" required>
+            <button type="submit">Enviar a WhatsApp</button>
+
+        </form>
+    </section>
+
+
+<!-- Aquí pegas el nuevo footer -->
+<footer id="contacto">
+  <div class="footer-container">
+
+    <!-- Logo -->
+    <div class="footer-logo">
+      <img src="img/Logo.jpeg" alt="Logo">
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="footer-socials">
+      <a href="https://wa.me/573044412478" target="_blank" rel="noopener" class="social-icon whatsapp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="https://www.instagram.com/perfu.fresh?igsh=dzN3bWdvZnJtdGg1&utm_source=qr" target="_blank" rel="noopener" class="social-icon instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.tiktok.com/@perfumera.fresh?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" class="social-icon tiktok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+    </div>
+
+    <!-- Info adicional -->
+    <div class="footer-info">
+      <p>© 2025 Perfumes FRESH, Vive Fresco, Vive Fresh!! | Todos los derechos reservados</p>
+      <p>Email: juanca1881@hotmail.com</p>
+    </div>
+  </div>
+</footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Tu archivo JS -->
+    <script src="script.js"></script>
+    
+    
+    <!--Icono del wapp-->
+    <a href="https://wa.me/573044412478" class="whatsapp-float" target="_blank" rel="noopener">
+    <img src="img/Iconow..png" alt="WhatsApp">
+    <span>Más información</span>
+</a>
+
+</body>
+</html>

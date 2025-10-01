@@ -1,0 +1,471 @@
+/* ====== ESTILOS GENERALES ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #f1f1f1;
+}
+
+/* ====== HEADER ====== */
+header {
+    background: rgba(0, 0, 0, 0.6);
+    color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+header nav a {
+    color: #ffffff;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+header nav a:hover {
+    background: #00c9a7;
+    color: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight:bold
+}
+
+.logo img {
+    height: 85px;
+    width: auto;
+}
+
+.logo-text {
+    font-family: 'Poppins', sans-serif; 
+  font-size: 28px;
+  font-weight: normal;
+  margin-left: 8px;
+  color: #13dfb3;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: #13dfb3;
+}
+
+.btn-wapp {
+    background: #25D366;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.btn-wapp:hover {
+    background: #1ebe5d;
+}
+
+/* ====== HERO ====== */
+.hero {
+    position: relative;
+    background: url('img/imagen.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 1rem;
+}
+
+/* Capa oscura encima de la imagen para mejorar contraste */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #f1f1f1;
+}
+
+.btn {
+    background: #c0392b;
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background: #a93226;
+    transform: translateY(-2px);
+}
+
+/* ====== CATÁLOGO ====== */
+#catalogo {
+    background: #f9f9f9;
+    padding: 3rem 1rem;
+    border-top: 1px solid #eee;
+}
+
+.filtros {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.filtros button {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1.2rem;
+    margin: 0.3rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filtros button:hover,
+.filtros .is-active {
+    background: #c0392b;
+    color: #fff;
+    border-color: #c0392b;
+}
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.producto {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.producto.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.producto img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.producto h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.producto p {
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+
+.producto .btn-wapp {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background: #25D366;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.producto .btn-wapp:hover {
+    background: #1ebe5d;
+}
+
+/* ====== SERVICIOS ====== */
+#servicios {
+    background: #fff;
+    padding: 3rem 1rem;
+    border-top: 1px solid #eee;
+}
+
+#servicios ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+#servicios li {
+    background: #f9f9f9;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: #555;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+#servicios li:hover {
+    transform: translateY(-3px);
+}
+
+/* ====== FORMULARIO ====== */
+#pedido {
+    background: #f9f9f9;
+    padding: 3rem 1rem;
+}
+
+form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+form input, form button {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #c0392b;
+    box-shadow: 0 0 5px rgba(192,57,43,0.3);
+}
+
+form button {
+    background: #c0392b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background: #a93226;
+}
+
+/* ====== FOOTER ====== */
+footer a {
+    color: #c0392b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #e74c3c;
+}
+
+/* Lo nuevo para los destacados */
+
+.destacados {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.destacados h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.destacados .swiper-slide {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.destacados .swiper-slide img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.destacados .swiper-slide p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Icono del wapp */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;  
+
+  background-color: #fff;
+  color: #25d366;
+  border: 2px solid #25d366;
+  border-radius: 30px;
+
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'poppins', sans-serif;
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.whatsapp-float img {
+  width: 24px;
+  height: 24px;
+}
+.whatsapp-float span {
+    color: #25d366;
+}
+
+.whatsapp-float:hover {
+    background-color: #25d366;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.whatsapp-float:hover span {
+    color: #fff;
+}
+
+.whatsapp-float:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* Esilos iconos redes */
+
+footer {
+  background-color: #000;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* reparte logo, texto y redes */
+  align-items: center;
+  flex-wrap: wrap; /* en móvil se apila */
+  gap: 20px;
+}
+
+.footer-logo img {
+  width: 80px;
+}
+
+.footer-info {
+  text-align: center;
+  flex: 1; /* ocupa espacio en el medio */
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icon {
+  font-size: 28px;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* Colores específicos */
+.whatsapp { color: #25D366; }
+.instagram { color: #E1306C; }
+.tiktok { color: #25f4ee; }
+.tiktok:hover { color: #fe2c55; }
+
+/* ====== FOOTER RESPONSIVO ====== */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;   /* apila logo, texto y redes */
+    text-align: center;       /* centra el texto */
+    gap: 20px;                /* espacio entre elementos */
+  }
+
+  .footer-socials {
+    justify-content: center;  /* centra los íconos */
+  }
+}
