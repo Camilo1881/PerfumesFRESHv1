@@ -373,11 +373,6 @@ footer a:hover {
   }
 }
 
-/* Pausar al hover - DESACTIVADO */
-/* .carousel-track:hover {
-  animation-play-state: paused;
-} */
-
 /* Cada slide */
 .carousel-slide {
   flex: 0 0 280px;
@@ -559,283 +554,11 @@ footer {
 .tiktok { color: #25f4ee; }
 .tiktok:hover { color: #fe2c55; }
 
-/* ====== RESPONSIVO MEJORADO ====== */
-/* Tablets y pantallas medianas (max-width: 768px) */
-@media (max-width: 768px) {
-  /* Header más compacto */
-  nav {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .logo img {
-    height: 60px;
-  }
-  
-  .logo-text {
-    font-size: 22px;
-  }
-  
-  .menu {
-    flex-direction: row;
-    justify-content: center;
-    gap: 0.8rem;
-    width: 100%;
-  }
-  
-  .menu a {
-    padding: 8px 15px;
-    font-size: 0.9rem;
-  }
-
-  /* Hero */
-  .hero-content h1 {
-    font-size: 2rem;
-  }
-
-  .hero-content p {
-    font-size: 1.1rem;
-  }
-
-  /* Títulos de secciones */
-  .destacados h2,
-  #catalogo h2,
-  #servicios h2,
-  #pedido h2 {
-    font-size: 1.6rem;
-  }
-
-  /* Carrusel */
-  .carousel-container {
-    padding: 0 45px;
-  }
-
-  .carousel-slide {
-    flex: 0 0 240px;
-    width: 240px;
-  }
-
-  .carousel-slide img {
-    height: 240px;
-  }
-
-  .carousel-arrow {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-
-  /* Productos del catálogo */
-  .productos {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-
-  /* Servicios */
-  #servicios li {
-    font-size: 1rem;
-    padding: 0.8rem 1.2rem;
-  }
-
-  /* Formulario */
-  #pedido {
-    padding: 2.5rem 1.5rem;
-  }
-
-  /* Footer */
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-  }
-
-  .footer-socials {
-    justify-content: center;
-  }
-
-  /* Panel del carrito */
-  .cart-panel {
-    width: 280px;
-  }
-
-  /* Botón WhatsApp flotante */
-  .whatsapp-float {
-    padding: 8px 15px;
-    font-size: 14px;
-  }
-
-  .whatsapp-float img {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-/* Móviles pequeños (max-width: 480px) */
-@media (max-width: 480px) {
-  /* Header aún más compacto */
-  .logo img {
-    height: 50px;
-  }
-  
-  .logo-text {
-    font-size: 18px;
-  }
-
-  .menu {
-    gap: 0.5rem;
-  }
-
-  .menu a {
-    padding: 6px 10px;
-    font-size: 0.85rem;
-  }
-
-  .cart-icon {
-    font-size: 20px;
-    margin-left: 10px;
-  }
-
-  /* Hero */
-  .hero {
-    height: 80vh;
-  }
-
-  .hero-content h1 {
-    font-size: 1.5rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  .btn {
-    padding: 0.7rem 1.5rem;
-    font-size: 0.9rem;
-  }
-
-  /* Títulos */
-  .destacados h2,
-  #catalogo h2,
-  #servicios h2,
-  #pedido h2 {
-    font-size: 1.4rem;
-  }
-
-  /* Carrusel más pequeño */
-  .carousel-container {
-    padding: 0 35px;
-  }
-
-  .carousel-slide {
-    flex: 0 0 200px;
-    width: 200px;
-  }
-
-  .carousel-slide img {
-    height: 200px;
-  }
-
-  .carousel-slide h3 {
-    font-size: 0.9rem;
-    padding: 12px;
-    min-height: 50px;
-  }
-
-  .carousel-arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 18px;
-  }
-
-  /* Productos en una sola columna */
-  .productos {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  /* Filtros más compactos */
-  .filtros button {
-    padding: 0.4rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  /* Servicios */
-  #servicios li {
-    font-size: 0.9rem;
-    padding: 0.7rem 1rem;
-  }
-
-  /* Formulario */
-  form input, form button {
-    font-size: 0.95rem;
-  }
-
-  /* Panel del carrito más pequeño */
-  .cart-panel {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .cart-content h2 {
-    font-size: 1.2rem;
-  }
-
-  /* Footer */
-  .footer-logo img {
-    width: 60px;
-  }
-
-  .footer-info {
-    font-size: 12px;
-  }
-
-  .social-icon {
-    font-size: 24px;
-  }
-
-  /* Botón WhatsApp flotante */
-  .whatsapp-float {
-    bottom: 15px;
-    right: 15px;
-    padding: 7px 12px;
-    font-size: 13px;
-  }
-
-  .whatsapp-float img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .whatsapp-float span {
-    display: none; /* Ocultar texto en móviles muy pequeños */
-  }
-}
-
 /* Diseño carrito */
-.cart-icon {
-  position: relative;
-  cursor: pointer;   /* 👈 esto hace que el mouse sea de “mano” */
-  font-size: 24px;
-  color: #fff;
-  margin-left: 20px;
-  user-select: none; /* 👈 evita que se seleccione como texto */
-}
-
-.cart-icon #cartCount {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  background: #c0392b;
-  color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 50%;
-  padding: 2px 6px;
-}
 
 .cart-icon {
   position: relative;
-  cursor: pointer;   /* 👈 cursor de mano */
+  cursor: pointer;
   font-size: 24px;
   color: #fff;
   margin-left: 20px;
@@ -948,7 +671,130 @@ footer {
 }
 
 .btn-cart {
-  cursor: pointer;        /* 👈 hace que el mouse sea de mano */
-  display: inline-block;  /* 👈 asegura que se comporte como botón */
-  user-select: none;      /* 👈 evita que se seleccione el texto */
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+}
+
+/* ====== RESPONSIVE SIMPLE Y EFECTIVO ====== */
+@media (max-width: 768px) {
+  /* Header */
+  .logo img {
+    height: 65px;
+  }
+  
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .menu a {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  /* Hero */
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+
+  /* Carrusel ajustado */
+  .carousel-container {
+    padding: 0 45px;
+  }
+
+  .carousel-slide {
+    flex: 0 0 220px;
+    width: 220px;
+  }
+
+  .carousel-slide img {
+    height: 220px;
+  }
+
+  /* Footer */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Header compacto */
+  .logo img {
+    height: 55px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .menu a {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .cart-icon {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  /* Hero */
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  /* Carrusel más pequeño */
+  .carousel-container {
+    padding: 0 38px;
+  }
+
+  .carousel-slide {
+    flex: 0 0 200px;
+    width: 200px;
+  }
+
+  .carousel-slide img {
+    height: 200px;
+  }
+
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  /* Productos */
+  .productos {
+    grid-template-columns: 1fr;
+  }
+
+  /* Carrito */
+  .cart-panel {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  /* WhatsApp flotante */
+  .whatsapp-float span {
+    display: none;
+  }
 }
