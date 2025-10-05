@@ -59,7 +59,7 @@ header nav a:hover {
 }
 
 .logo-text {
-    font-family: 'Poppins', sans-serif; 
+  font-family: 'Playfair Display', sans-serif; 
   font-size: 28px;
   font-weight: normal;
   margin-left: 8px;
@@ -86,7 +86,7 @@ header nav a:hover {
     color: #13dfb3;
 }
 
-.btn-wapp {
+.btn-cart {
     background: #25D366;
     color: white;
     padding: 0.5rem 1rem;
@@ -95,7 +95,7 @@ header nav a:hover {
     transition: background 0.3s ease;
 }
 
-.btn-wapp:hover {
+.btn-cart:hover {
     background: #1ebe5d;
 }
 
@@ -329,43 +329,143 @@ footer a:hover {
     color: #e74c3c;
 }
 
-/* Lo nuevo para los destacados */
+/* ====== CARRUSEL INFINITO PERSONALIZADO ====== */
 
 .destacados {
   text-align: center;
   padding: 50px 20px;
+  background: #fff;
+  overflow: hidden;
 }
 
 .destacados h2 {
   font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.destacados .swiper-slide {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  padding: 15px;
-  width: 280px;
-  flex-shrink: 0;
-}
-
-.destacados .swiper-slide img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-}
-
-.destacados .swiper-slide p {
-  margin-top: 10px;
-  font-weight: bold;
+  margin-bottom: 30px;
   color: #333;
 }
 
-/* Icono del wapp */
+.carousel-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 60px;
+}
 
+.carousel-track-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  animation: scroll 30s linear infinite;
+  width: fit-content;
+}
+
+/* Animación continua */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pausar al hover - DESACTIVADO */
+/* .carousel-track:hover {
+  animation-play-state: paused;
+} */
+
+/* Cada slide */
+.carousel-slide {
+  flex: 0 0 280px;
+  width: 280px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-slide:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-slide h3 {
+  padding: 15px;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-slide .btn-wapp {
+  display: inline-block;
+  margin: 0 15px 15px 15px;
+  background: #25D366;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-slide .btn-wapp:hover {
+  background: #1ebe5d;
+}
+
+/* Flechas de navegación */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  color: #c0392b;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.carousel-arrow:hover {
+  background: #c0392b;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow-left {
+  left: 0;
+}
+
+.carousel-arrow-right {
+  right: 0;
+}
+
+/* Icono del wapp */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
@@ -385,12 +485,14 @@ footer a:hover {
   font-family: 'poppins', sans-serif;
   text-decoration: none;
   z-index: 9999;
+  transition: all 0.3s ease;
 }
 
 .whatsapp-float img {
   width: 24px;
   height: 24px;
 }
+
 .whatsapp-float span {
     color: #25d366;
 }
@@ -409,7 +511,7 @@ footer a:hover {
     filter: brightness(0) invert(1);
 }
 
-/* Esilos iconos redes */
+/* Estilos iconos redes - FOOTER */
 
 footer {
   background-color: #000;
@@ -419,9 +521,9 @@ footer {
 
 .footer-container {
   display: flex;
-  justify-content: space-between; /* reparte logo, texto y redes */
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* en móvil se apila */
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -431,7 +533,7 @@ footer {
 
 .footer-info {
   text-align: center;
-  flex: 1; /* ocupa espacio en el medio */
+  flex: 1;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -457,15 +559,396 @@ footer {
 .tiktok { color: #25f4ee; }
 .tiktok:hover { color: #fe2c55; }
 
-/* ====== FOOTER RESPONSIVO ====== */
+/* ====== RESPONSIVO MEJORADO ====== */
+/* Tablets y pantallas medianas (max-width: 768px) */
 @media (max-width: 768px) {
+  /* Header más compacto */
+  nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+  
+  .logo-text {
+    font-size: 22px;
+  }
+  
+  .menu {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+  }
+  
+  .menu a {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  /* Hero */
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+
+  /* Títulos de secciones */
+  .destacados h2,
+  #catalogo h2,
+  #servicios h2,
+  #pedido h2 {
+    font-size: 1.6rem;
+  }
+
+  /* Carrusel */
+  .carousel-container {
+    padding: 0 45px;
+  }
+
+  .carousel-slide {
+    flex: 0 0 240px;
+    width: 240px;
+  }
+
+  .carousel-slide img {
+    height: 240px;
+  }
+
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  /* Productos del catálogo */
+  .productos {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Servicios */
+  #servicios li {
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+  }
+
+  /* Formulario */
+  #pedido {
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* Footer */
   .footer-container {
-    flex-direction: column;   /* apila logo, texto y redes */
-    text-align: center;       /* centra el texto */
-    gap: 20px;                /* espacio entre elementos */
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
   }
 
   .footer-socials {
-    justify-content: center;  /* centra los íconos */
+    justify-content: center;
   }
+
+  /* Panel del carrito */
+  .cart-panel {
+    width: 280px;
+  }
+
+  /* Botón WhatsApp flotante */
+  .whatsapp-float {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .whatsapp-float img {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Móviles pequeños (max-width: 480px) */
+@media (max-width: 480px) {
+  /* Header aún más compacto */
+  .logo img {
+    height: 50px;
+  }
+  
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .menu {
+    gap: 0.5rem;
+  }
+
+  .menu a {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .cart-icon {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  /* Hero */
+  .hero {
+    height: 80vh;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Títulos */
+  .destacados h2,
+  #catalogo h2,
+  #servicios h2,
+  #pedido h2 {
+    font-size: 1.4rem;
+  }
+
+  /* Carrusel más pequeño */
+  .carousel-container {
+    padding: 0 35px;
+  }
+
+  .carousel-slide {
+    flex: 0 0 200px;
+    width: 200px;
+  }
+
+  .carousel-slide img {
+    height: 200px;
+  }
+
+  .carousel-slide h3 {
+    font-size: 0.9rem;
+    padding: 12px;
+    min-height: 50px;
+  }
+
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  /* Productos en una sola columna */
+  .productos {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Filtros más compactos */
+  .filtros button {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Servicios */
+  #servicios li {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+  }
+
+  /* Formulario */
+  form input, form button {
+    font-size: 0.95rem;
+  }
+
+  /* Panel del carrito más pequeño */
+  .cart-panel {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .cart-content h2 {
+    font-size: 1.2rem;
+  }
+
+  /* Footer */
+  .footer-logo img {
+    width: 60px;
+  }
+
+  .footer-info {
+    font-size: 12px;
+  }
+
+  .social-icon {
+    font-size: 24px;
+  }
+
+  /* Botón WhatsApp flotante */
+  .whatsapp-float {
+    bottom: 15px;
+    right: 15px;
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .whatsapp-float img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .whatsapp-float span {
+    display: none; /* Ocultar texto en móviles muy pequeños */
+  }
+}
+
+/* Diseño carrito */
+.cart-icon {
+  position: relative;
+  cursor: pointer;   /* 👈 esto hace que el mouse sea de “mano” */
+  font-size: 24px;
+  color: #fff;
+  margin-left: 20px;
+  user-select: none; /* 👈 evita que se seleccione como texto */
+}
+
+.cart-icon #cartCount {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #c0392b;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+.cart-icon {
+  position: relative;
+  cursor: pointer;   /* 👈 cursor de mano */
+  font-size: 24px;
+  color: #fff;
+  margin-left: 20px;
+  user-select: none;
+}
+
+.cart-icon #cartCount {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #c0392b;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+}
+
+/* Panel lateral del carrito */
+.cart-panel {
+  display: none;
+  position: fixed;
+  top: 0; right: 0;
+  width: 320px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+  z-index: 2000;
+  padding: 20px;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease;
+}
+
+.cart-panel.active {
+  display: block;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.cart-content h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #c0392b;
+}
+
+.cart-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.cart-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9f9f9;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.cart-items li button {
+  background: transparent;
+  border: none;
+  color: #c0392b;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cart-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.cart-footer p {
+  margin-bottom: 10px;
+}
+
+#checkoutBtn {
+  background: #25D366;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#checkoutBtn:hover {
+  background: #1ebe5d;
+}
+
+.close-btn {
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.close-btn:hover {
+  background: #a93226;
+}
+
+.btn-cart {
+  cursor: pointer;        /* 👈 hace que el mouse sea de mano */
+  display: inline-block;  /* 👈 asegura que se comporte como botón */
+  user-select: none;      /* 👈 evita que se seleccione el texto */
 }
