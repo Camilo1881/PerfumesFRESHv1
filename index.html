@@ -8,9 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfumes Fresh</title>
     <link rel="icon" type="image/png" href="img/Logo.jpeg">
-
-    <!-- SWIPER CSS--> 
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     
      <!--CSS STYLE-->
     <link rel="stylesheet" href="style.css">
@@ -28,11 +25,8 @@
 <body>
 
     <!-- HEADER -->
-
     <header>
-
         <nav>
-
             <div class="logo">
             <img src="img/Logo.jpeg" alt="Perfumes Fresh" class="logo-img">
             <span class="logo-text">Perfumes Fresh</span>
@@ -42,7 +36,13 @@
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#contacto">Contacto</a></li>
-            </ul>        
+            </ul>
+            
+            <div class="cart-icon" id="cartIcon">
+              <i class="fas fa-shopping-cart"></i>
+              <span id="cartCount">0</span>
+            </div>
+
         </nav>
     </header>
 
@@ -51,9 +51,8 @@
     <!-- INICIO -->
 
     <section id="inicio" class="hero">
-
         <div class="hero-content">
-
+          
             <h1>F R E S H, Vive Fresco, vive FRESH</h1>
             <p>Perfumes únicos para cada personalidad</p>
             <a href="#catalogo" class="btn">Ver Catálogo</a>
@@ -64,89 +63,88 @@
 
 
 
-    <!-- BANNER DESTACADOS -->
+    <!-- BANNER DESTACADOS - NUEVO CARRUSEL INFINITO -->
 
     <section class="destacados">
       <h2>Perfumes Destacados</h2>
 
-      <div class="swiper destacados-swiper">
-        <div class="swiper-wrapper">
+      <div class="carousel-container">
+        
+        <!-- Flecha Izquierda -->
+        <button class="carousel-arrow carousel-arrow-left" aria-label="Anterior">←</button>
 
-          <!-- Slide 1 -->
-          <div class="swiper-slide">
-            <img src="img/Perfume1.jpg" alt="Perfume 1">
-            <h3>Bharara Pharaoh Ramesses 100ml</h3>
-            <a class="btn-wapp">Pedir</a>
+        <!-- Contenedor del carrusel -->
+        <div class="carousel-track-container">
+          <div class="carousel-track" id="carouselTrack">
+            
+            <!-- Perfume 1 -->
+            <div class="carousel-slide">
+              <img src="img/Perfume1.jpg" alt="Perfume 1">
+              <h3>Bharara Pharaoh Ramesses 100ml</h3>
+              <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
+            <!-- Perfume 2 -->
+            <div class="carousel-slide">
+              <img src="img/Perfume2.jpg" alt="Perfume 2">
+              <h3>Kaiak URBE 100ml</h3>
+              <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
+            <!-- Perfume 3 -->
+            <div class="carousel-slide">
+              <img src="img/Perfume3.jpg" alt="Perfume 3">
+              <h3>Bleu Nigth 100ml</h3>
+              <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
+            <!-- Perfume 4 -->
+            <div class="carousel-slide">
+              <img src="img/Perfume4.jpg" alt="Perfume 4">
+              <h3>Natural Energy 50Ml</h3>
+              <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
+            <!-- Perfume 5 -->
+            <div class="carousel-slide">
+              <img src="img/Perfume5.jpg" alt="Perfume 5">
+              <h3>Hugo Boss BLACK</h3>
+              <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
+            <!-- Perfume 6 -->
+            <div class="carousel-slide">
+              <img src="img/Perfume6.jpg" alt="Perfume 6">
+              <h3>Acqua di gio</h3>
+              <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
+            <!-- Perfume 7 -->
+            <div class="carousel-slide">
+              <img src="img/Perfume7.jpg" alt="Perfume 7">
+              <h3>BOMBSHELL 100ml</h3>
+              <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
+            <!-- Perfume 8 -->
+            <div class="carousel-slide">
+              <img src="img/Perfume8.jpg" alt="Perfume 8">
+              <h3>Infini Elixir Maison Alhambra</h3>
+              <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
           </div>
-
-          <!-- Slide 2 -->
-          <div class="swiper-slide">
-            <img src="img/Perfume2.jpg" alt="Perfume 2">
-            <h3>Kaiak URBE 100ml</h3>
-            <a class="btn-wapp">Pedir</a>
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="swiper-slide">
-            <img src="img/Perfume3.jpg" alt="Perfume 3">
-            <h3>Bleu Nigth 100ml</h3>
-            <a class="btn-wapp">Pedir</a>
-          </div>
-
-          <!-- Slide 4 -->
-          <div class="swiper-slide">
-            <img src="img/Perfume4.jpg" alt="Perfume 4">
-            <h3>Natural Energy 50Ml</h3>
-            <a class="btn-wapp">Pedir</a>
-          </div>
-
-          <!-- Slide 5 -->
-          <div class="swiper-slide">
-            <img src="img/Perfume5.jpg" alt="Perfume 5">
-            <h3>Hubo Boss BLACK</h3>
-            <a class="btn-wapp">Pedir</a>
-          </div>
-
-          <!-- Slide 6 -->
-          <div class="swiper-slide">
-            <img src="img/Perfume6.jpg" alt="Perfume 6">
-            <h3>Acqua di gio</h3>
-            <a class="btn-wapp">Pedir</a>
-          </div>
-
-          <!-- Slide 7 -->
-          <div class="swiper-slide">
-            <img src="img/Perfume7.jpg" alt="Perfume 7">
-            <h3>BOMBSHELL 100ml</h3>
-            <a class="btn-wapp">Pedir</a>
-          </div>
-
-          <!-- Slide 8 -->
-          <div class="swiper-slide">
-            <img src="img/Perfume8.jpg" alt="Perfume 8">
-            <h3>Infini Elixir Maison Alhambra</h3>
-            <a class="btn-wapp">Pedir</a>
-          </div>
-
         </div>
 
-        <!-- Flechas -->
-
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-
-        <!-- Paginación -->
-
-        <div class="swiper-pagination"></div>
+        <!-- Flecha Derecha -->
+        <button class="carousel-arrow carousel-arrow-right" aria-label="Siguiente">→</button>
 
       </div>
-
     </section>
 
 
 
     <!-- CATÁLOGO -->
-
     <section id="catalogo">
 
         <h2>Catálogo de Perfumes</h2>
@@ -168,43 +166,43 @@
 
                 <img src="img/Perfume8.jpg" alt="Perfume8 ejemplo">
                 <h3>Infini Elixir Maison Alhambra</h3>                
-                <a class="btn-wapp">Pedir</a>
+                <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <div class="producto" data-category="hombre">
                 <img src="img/Perfume1.jpg" alt="Perfume 1">
                 <h3>Bharara Pharaoh Ramesses 100ml</h3>                
-                <a class="btn-wapp">Pedir</a>
+                <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <div class="producto" data-category="hombre">
                 <img src="img/Perfume2.jpg" alt="Perfume 2">
                 <h3>Kaiak URBE 10ML</h3>                
-                <a class="btn-wapp">Pedir</a>
+                <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <div class="producto" data-category="hombre">
                 <img src="img/Perfume3.jpg" alt="Perfume 3">
                 <h3>Bleu Nigth 100ml</h3>                
-                <a class="btn-wapp">Pedir</a>
+                <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <div class="producto" data-category="hombre">
                 <img src="img/Perfume4.jpg" alt="Perfume 4">
                 <h3>Natural Energy 50Ml</h3>                
-                <a class="btn-wapp">Pedir</a>
+                <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <div class="producto" data-category="hombre">
                 <img src="img/Perfume5.jpg" alt="Perfume 5">
                 <h3>Hugo Boss BLACK</h3>                
-                <a class="btn-wapp">Pedir</a>
+                <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <div class="producto" data-category="hombre">
                 <img src="img/Perfume6.jpg" alt="Perfume 6">
                 <h3>Acqua di gio</h3>                
-                <a class="btn-wapp">Pedir</a>
+                <a class="btn-cart">Agregar al carrito</a>
             </div>
         
             <!-- CAT HOMBRE -->
@@ -212,13 +210,13 @@
             <div class="producto" data-category="mujer">
                 <img src="img/Perfume7.jpg" alt="Perfume 7">
                 <h3>BOMBSHELL 10ml</h3>                
-                <a class="btn-wapp">Pedir</a>
+                <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <div class="producto" data-category="unisex">
                 <img src="img/Perfume9.jpg" alt="Perfume 9">
                 <h3>EMEER LATTAFA 100ml</h3>                
-                <a class="btn-wapp">Pedir</a>
+                <a class="btn-cart">Agregar al carrito</a>
             </div>            
             
         </div>
@@ -228,9 +226,7 @@
 
 
     <!-- SERVICIOS -->
-
     <section id="servicios">
-
         <h2>Servicios</h2>
 
         <ul>
@@ -238,18 +234,21 @@
             <li>🚚 Envío gratis en el Valle de Aburrá</li>
             <li>📦 Envíos nacionales, consulta nuestros terminos y condiciones</li>
             <li>📦 Tambien contamos con servicio contraentrega</li>
-            <li> Contamos con el servicio de ADDI</li>
+            <li>🛒 Contamos con el servicio de ADDI</li>
 
         </ul>
-
     </section>
-
-
-
+    
+    
+    <section id="carrito" style="display:none;">
+      
+      <h2>Tu carrito</h2>
+      <ul id="cartItems"></ul>
+      <button id="checkoutBtn">Finalizar pedido</button>
+    </section>
+    
     <!-- FORMULARIO DE PEDIDO -->
-
     <section id="pedido">
-
         <h2>Formulario de Pedido</h2>
 
         <form id="formPedido">
@@ -264,7 +263,7 @@
     </section>
 
 
-<!-- Aquí pegas el nuevo footer -->
+<!-- Footer -->
 <footer id="contacto">
   <div class="footer-container">
 
@@ -294,9 +293,6 @@
   </div>
 </footer>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
     <!-- Tu archivo JS -->
     <script src="script.js"></script>
     
@@ -306,6 +302,19 @@
     <img src="img/Iconow..png" alt="WhatsApp">
     <span>Más información</span>
 </a>
+
+<div id="carritoPanel" class="cart-panel">
+  <div class="cart-content">
+    <h2>🛒 Tu carrito</h2>
+    <ul id="cartItems" class="cart-items"></ul>
+    
+    <div class="cart-footer">
+      <p><strong>Total productos:</strong> <span id="cartTotal">0</span></p>
+      <button id="checkoutBtn">Finalizar pedido</button>
+      <button id="closeCart" class="close-btn">Cerrar</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
