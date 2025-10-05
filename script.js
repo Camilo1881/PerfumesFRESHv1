@@ -373,14 +373,12 @@ document.addEventListener('click', (e) => {
 
 // ====== INICIALIZACIÓN GENERAL ======
 document.addEventListener("DOMContentLoaded", () => {
-  initFormToWhatsApp();     // lo que ya tenías
-  initProductButtons();     // lo que ya tenías
-  initHeaderWhatsApp();     // lo que ya tenías
-  initCatalogFilters();     // lo que ya tenías
-  initSmoothScroll();       // lo que ya tenías
-  initCarouselInfinito();   // lo que ya tenías
-
-  // 👇 SOLO ESTO ES NUEVO
+  initFormToWhatsApp();     
+  initProductButtons();     
+  initHeaderWhatsApp();     
+  initCatalogFilters();     
+  initSmoothScroll();       
+  initCarouselInfinito();   
   initCartButtons();
   initCheckout();
   initCartToggle();
