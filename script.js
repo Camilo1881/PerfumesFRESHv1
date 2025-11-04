@@ -1,800 +1,403 @@
-/* ====== ESTILOS GENERALES ====== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+// ====== CONFIGURACIÓN ====== //
+const WHATSAPP_NUMBER = "573044412478";
+const DEFAULT_HEADER_MSG = "Hola, me gustaría conocer más sobre Perfumes Fresh 💬";
+
+// ====== HELPERS ====== //
+const q = (sel, ctx = document) => ctx.querySelector(sel);
+const qa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+const encode = (s) => encodeURIComponent(s);
+
+function waUrl({ phone, text }) {
+  return `https://wa.me/${phone}?text=${encode(text)}`;
 }
 
-body {
-    font-family: 'Playfair Display', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: #f1f1f1;
+function buildOrderMessage({ nombre, perfumes, ubicacion }) {
+  return [
+    "🧾 Nuevo pedido desde la web:",
+    `• Nombre: ${nombre}`,
+    `• Perfumes: ${perfumes}`,
+    `• Ubicación: ${ubicacion}`,
+    "",
+    "Gracias, quedo pendiente ✅"
+  ].join("\n");
 }
 
-/* ====== HEADER ====== */
-header {
-    background: rgba(0, 0, 0, 0.6);
-    color: black;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+// ====== FORMULARIO -> WHATSAPP ====== //
+function initFormToWhatsApp() {
+  const form = q("#formPedido");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    const required = ["nombre", "perfumes", "ubicacion"];
+    for (const field of required) {
+      if (!data[field] || !data[field].toString().trim()) {
+        alert(`Por favor completa el campo: ${field}`);
+        return;
+      }
+    }
+
+    const text = buildOrderMessage({
+      nombre: data.nombre.trim(),
+      perfumes: data.perfumes.trim(),
+      ubicacion: data.ubicacion.trim()
+    });
+    window.open(waUrl({ phone: WHATSAPP_NUMBER, text }), "_blank");
+  });
 }
 
-nav {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
+// ====== BOTONES "PEDIR" EN PRODUCTOS ====== //
+function initProductButtons() {
+  const cards = qa(".producto");
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    const nameEl = q("h3", card);
+    const btn = q(".btn-wapp", card);
+    if (!nameEl || !btn) return;
+
+    const perfumeName = nameEl.textContent.trim();
+    const msg = `Hola 👋, quiero el perfume: ${perfumeName}. ¿Me cuentas sobre este perfume, disponibilidad y precios?`;
+
+    btn.setAttribute("href", waUrl({ phone: WHATSAPP_NUMBER, text: msg }));
+    btn.setAttribute("target", "_blank");
+    btn.setAttribute("rel", "noopener");
+  });
 }
 
-header nav a {
-    color: #ffffff;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
+// ====== BOTÓN WHATSAPP DEL HEADER ======//
+function initHeaderWhatsApp() {
+  const headerBtn = qa("header .btn-wapp").find(Boolean);
+  if (!headerBtn) return;
+
+  const msg = headerBtn.getAttribute("data-text")?.trim() || DEFAULT_HEADER_MSG;
+  headerBtn.setAttribute("href", waUrl({ phone: WHATSAPP_NUMBER, text: msg }));
+  headerBtn.setAttribute("target", "_blank");
+  headerBtn.setAttribute("rel", "noopener");
 }
 
-header nav a:hover {
-    background: #00c9a7;
-    color: #fff;
-}
+// ====== FILTROS DE CATÁLOGO ====== //
+function initCatalogFilters() {
+  const filterBar = q(".filtros");
+  const products = qa(".producto");
+  if (!filterBar || !products.length) return;
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.5rem;
-    font-weight:bold
-}
+  const buttons = qa("button", filterBar);
+  if (!buttons.length) return;
 
-.logo img {
-    height: 85px;
-    width: auto;
-}
+  let activeFilter = null;
 
-.logo-text {
-  font-family: 'Great Vibes', sans-serif; 
-  font-size: 50px;
-  font-weight: normal;
-  margin-left: 8px;
-  color: #13dfb3;
-}
+  // Ocultar todos los productos al inicio
+  products.forEach(card => card.style.display = "none");
 
-.menu {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-}
-
-.menu a {
-    text-decoration: none;
-    color: #555;
-    font-weight: 500;
-    padding: 10px 20px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    font-weight: bold;
-}
-
-.menu a:hover {
-    color: #13dfb3;
-}
-
-.btn-cart {
-    background: #25D366;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s ease;
-}
-
-.btn-cart:hover {
-    background: #1ebe5d;
-}
-
-/* ====== HERO ====== */
-.hero {
-    position: relative;
-    background: url('img/Fondo.jfif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    padding: 0 1rem;
-}
-
-/* Capa oscura encima de la imagen para mejorar contraste */
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.45);
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 700px;
-}
-
-.hero-content h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.hero-content p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    color: #f1f1f1;
-}
-
-.btn {
-    background: #c0392b;
-    color: white;
-    padding: 0.8rem 1.8rem;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.btn:hover {
-    background: #a93226;
-    transform: translateY(-2px);
-}
-
-/* ====== CATÁLOGO ====== */
-#catalogo {
-    background: #f9f9f9;
-    padding: 3rem 1rem;
-    border-top: 1px solid #eee;
-}
-
-.filtros {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.filtros button {
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 0.5rem 1.2rem;
-    margin: 0.3rem;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.filtros button:hover,
-.filtros .is-active {
-    background: #c0392b;
-    color: #fff;
-    border-color: #c0392b;
-}
-
-.productos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.producto {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    text-align: center;
-    padding: 1rem;
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: scale(0.95);
-}
-
-.producto.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.producto:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.producto img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-
-.producto h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-.producto p {
-    color: #777;
-    margin-bottom: 0.5rem;
-}
-
-.producto .btn-wapp {
-    display: inline-block;
-    margin-top: 0.5rem;
-    background: #25D366;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.3s ease;
-}
-
-.producto .btn-wapp:hover {
-    background: #1ebe5d;
-}
-
-/* ====== SERVICIOS ====== */
-#servicios {
-    background: #fff;
-    padding: 3rem 1rem;
-    border-top: 1px solid #eee;
-}
-
-#servicios ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-#servicios li {
-    background: #f9f9f9;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    color: #555;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease;
-}
-
-#servicios li:hover {
-    transform: translateY(-3px);
-}
-
-/* ====== FORMULARIO ====== */
-#pedido {
-    background: #f9f9f9;
-    padding: 3rem 1rem;
-}
-
-form {
-    max-width: 500px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-form input, form button {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-form input:focus {
-    outline: none;
-    border-color: #c0392b;
-    box-shadow: 0 0 5px rgba(192,57,43,0.3);
-}
-
-form button {
-    background: #c0392b;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.3s ease;
-}
-
-form button:hover {
-    background: #a93226;
-}
-
-/* ====== FOOTER ====== */
-footer a {
-    color: #c0392b;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    color: #e74c3c;
-}
-
-/* ====== CARRUSEL INFINITO PERSONALIZADO ====== */
-.destacados {
-  text-align: center;
-  padding: 50px 20px;
-  background: #fff;
-  overflow: hidden;
-}
-
-.destacados h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.carousel-container {
-  position: relative;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 60px;
-}
-
-.carousel-track-container {
-  overflow: hidden;
-  width: 100%;
-}
-
-.carousel-track {
-  display: flex;
-  gap: 20px;
-  animation: scroll 30s linear infinite;
-  width: fit-content;
-}
-
-/* Animación continua */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
+  function applyFilter(filter) {
+    products.forEach((card) => {
+      const cat = (card.getAttribute("data-category") || "").toLowerCase().trim();
+      const match = filter === "todos" || filter === cat;
+      card.style.display = match ? "block" : "none";
+      if (match) {
+        setTimeout(() => card.classList.add("visible"), 10);        
+      } else {
+        card.classList.remove("visible");
+      }
+    });
   }
-  100% {
-    transform: translateX(-50%);
+
+  function clearFilter () {
+    products.forEach(card => card.style.display ="none");
   }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = (btn.getAttribute("data-filter") || btn.textContent).toLowerCase().trim();
+
+      if (activeFilter === filter) {
+        activeFilter = null;
+        buttons.forEach((b) => b.classList.remove("is-active"));
+        clearFilter();
+      } else {
+        activeFilter = filter;
+        buttons.forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        applyFilter(filter)
+      }  
+    });
+  });
 }
 
-/* Cada slide */
-.carousel-slide {
-  flex: 0 0 280px;
-  width: 280px;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+// ====== SCROLL SUAVE ====== //
+function initSmoothScroll() {
+  const links = qa('a[href^="#"]');
+  if (!links.length) return;
+
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const id = link.getAttribute("href");
+      const target = id && q(id);
+      if (!target) return;
+
+      e.preventDefault();
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      })      
+    });
+  });
 }
 
-.carousel-slide:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  display: block;
-}
-
-.carousel-slide h3 {
-  padding: 15px;
-  font-size: 1rem;
-  color: #333;
-  font-weight: 600;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel-slide .btn-wapp {
-  display: inline-block;
-  margin: 0 15px 15px 15px;
-  background: #25D366;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s ease;
-  cursor: pointer;
-}
-
-.carousel-slide .btn-wapp:hover {
-  background: #1ebe5d;
-}
-
-/* Flechas de navegación */
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  border: none;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  color: #c0392b;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.carousel-arrow:hover {
-  background: #c0392b;
-  color: white;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-arrow-left {
-  left: 0;
-}
-
-.carousel-arrow-right {
-  right: 0;
-}
-
-/* Icono del wapp */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;  
-
-  background-color: #fff;
-  color: #25d366;
-  border: 2px solid #25d366;
-  border-radius: 30px;
-
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  text-decoration: none;
-  z-index: 9999;
-  transition: all 0.3s ease;
-}
-
-.whatsapp-float img {
-  width: 24px;
-  height: 24px;
-}
-
-.whatsapp-float span {
-    color: #25d366;
-}
-
-.whatsapp-float:hover {
-    background-color: #25d366;
-    color: #fff;
-    transform: translateY(-3px);
-}
-
-.whatsapp-float:hover span {
-    color: #fff;
-}
-
-.whatsapp-float:hover img {
-    filter: brightness(0) invert(1);
-}
-
-/* Estilos iconos redes - FOOTER */
-
-footer {
-  background-color: #000;
-  color: #fff;
-  padding: 40px 20px;
-}
-
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.footer-logo img {
-  width: 80px;
-}
-
-.footer-info {
-  text-align: center;
-  flex: 1;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.footer-socials {
-  display: flex;
-  gap: 15px;
-}
-
-.social-icon {
-  font-size: 28px;
-  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.social-icon:hover {
-  transform: scale(1.2);
-  text-shadow: 0 0 10px currentColor;
-}
-
-/* Colores específicos */
-.whatsapp { color: #25D366; }
-.instagram { color: #E1306C; }
-.tiktok { color: #25f4ee; }
-.tiktok:hover { color: #fe2c55; }
-
-/* Diseño carrito */
-
-.cart-icon {
-  position: relative;
-  cursor: pointer;
-  font-size: 24px;
-  color: #fff;
-  margin-left: 20px;
-  user-select: none;
-}
-
-.cart-icon #cartCount {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  background: #c0392b;
-  color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 50%;
-  padding: 2px 6px;
-}
-
-/* Panel lateral del carrito */
-.cart-panel {
-  display: none;
-  position: fixed;
-  top: 0; right: 0;
-  width: 320px;
-  height: 100%;
-  background: #fff;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.3);
-  z-index: 2000;
-  padding: 20px;
-  overflow-y: auto;
-  animation: slideIn 0.3s ease;
-}
-
-.cart-panel.active {
-  display: block;
-}
-
-@keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-.cart-content h2 {
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  color: #c0392b;
-}
-
-.cart-items {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1rem 0;
-}
-
-.cart-items li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f9f9f9;
-  margin-bottom: 8px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 0.95rem;
-}
-
-.cart-items li button {
-  background: transparent;
-  border: none;
-  color: #c0392b;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.cart-footer {
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-}
-
-.cart-footer p {
-  margin-bottom: 10px;
-}
-
-#checkoutBtn {
-  background: #25D366;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-#checkoutBtn:hover {
-  background: #1ebe5d;
-}
-
-.close-btn {
-  background: #c0392b;
-  color: #fff;
-  border: none;
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-}
-
-.close-btn:hover {
-  background: #a93226;
-}
-
-.btn-cart {
-  cursor: pointer;
-  display: inline-block;
-  user-select: none;
-}
-
-/* ====== RESPONSIVE SIMPLE Y EFECTIVO ====== */
-@media (max-width: 768px) {
-  /* Header */
-  .logo img {
-    height: 65px;
-  }
+// ====== CARRUSEL INFINITO PERSONALIZADO ====== //
+function initCarouselInfinito() {
+  const track = document.getElementById('carouselTrack');
+  const leftArrow = document.querySelector('.carousel-arrow-left');
+  const rightArrow = document.querySelector('.carousel-arrow-right');
   
-  .logo-text {
-    font-size: 20px;
+  if (!track || !leftArrow || !rightArrow) {
+    console.error('No se encontraron elementos del carrusel');
+    return;
   }
 
-  .menu {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.8rem;
+  // Duplicar slides para efecto infinito
+  const slides = Array.from(track.children);
+  slides.forEach(slide => {
+    const clone = slide.cloneNode(true);
+    track.appendChild(clone);
+  });
+
+  // Variables de control
+  let animationPaused = false;
+  const slideWidth = 300;
+  const animationDuration = 30;
+
+  // Función para mover el carrusel manualmente
+  function moveCarousel(direction) {
+    animationPaused = true;
+    track.style.animationPlayState = 'paused';
+    
+    const currentTransform = getComputedStyle(track).transform;
+    let currentTranslate = 0;
+    
+    if (currentTransform !== 'none') {
+      const matrix = new DOMMatrix(currentTransform);
+      currentTranslate = matrix.m41;
+    }
+
+    if (direction === 'left') {
+      currentTranslate += slideWidth * 2;
+    } else {
+      currentTranslate -= slideWidth * 2;
+    }
+
+    track.style.transform = `translateX(${currentTranslate}px)`;
+    track.style.animation = 'none';
+
+    setTimeout(() => {
+      track.style.animation = `scroll ${animationDuration}s linear infinite`;
+      animationPaused = false;
+    }, 1500);
   }
 
-  .menu a {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
+  leftArrow.addEventListener('click', (e) => {
+    e.preventDefault();
+    moveCarousel('left');
+  });
 
-  /* Hero */
-  .hero-content h1 {
-    font-size: 2rem;
-  }
+  rightArrow.addEventListener('click', (e) => {
+    e.preventDefault();
+    moveCarousel('right');
+  });
 
-  .hero-content p {
-    font-size: 1.1rem;
-  }
+  // Configurar botones de WhatsApp en los slides
+  const allSlides = track.querySelectorAll('.carousel-slide');
+  allSlides.forEach(slide => {
+    const nameEl = slide.querySelector('h3');
+    const btn = slide.querySelector('.btn-wapp');
+    if (!nameEl || !btn) return;
 
-  /* Carrusel ajustado */
-  .carousel-container {
-    padding: 0 45px;
-  }
+    const perfumeName = nameEl.textContent.trim();
+    const msg = `Hola 👋, quiero el perfume: ${perfumeName}. ¿Me cuentas sobre este perfume, disponibilidad y precios?`;
+    
+    btn.setAttribute("href", `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`);
+    btn.setAttribute("target", "_blank");
+    btn.setAttribute("rel", "noopener");
+  });
 
-  .carousel-slide {
-    flex: 0 0 220px;
-    width: 220px;
-  }
-
-  .carousel-slide img {
-    height: 220px;
-  }
-
-  /* Footer */
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-  }
-
-  .footer-socials {
-    justify-content: center;
-  }
+  console.log('Carrusel inicializado correctamente');
 }
 
-@media (max-width: 480px) {
+// ====== CARRITO MEJORADO ====== //
+let cart = [];
+
+// Función para formatear precio
+function formatPrice(price) {
+  // Convierte "60.000" a número 60000
+  return parseFloat(price.replace(/\./g, ''));
+}
+
+// Función para mostrar precio formateado
+function displayPrice(price) {
+  return `$${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+}
+
+function addToCart(productName, price) {
+  // Verificar si el producto ya existe
+  const exists = cart.find(item => item.name === productName);
   
-  /* Header compacto */
-  .logo img {
-    height: 55px;
+  if (exists) {
+    alert(`${productName} ya está en el carrito`);
+    return;
   }
 
-  .logo-text {
-    font-size: 18px;
-  }
-
-  .menu a {
-    padding: 6px 10px;
-    font-size: 0.85rem;
-  }
-
-  .cart-icon {
-    font-size: 20px;
-    margin-left: 10px;
-  }
-
-  /* Hero */
-  .hero-content h1 {
-    font-size: 1.6rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  /* Carrusel más pequeño */
-  .carousel-container {
-    padding: 0 38px;
-  }
-
-  .carousel-slide {
-    flex: 0 0 200px;
-    width: 200px;
-  }
-
-  .carousel-slide img {
-    height: 200px;
-  }
-
-  .carousel-arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 18px;
-  }
-
-  /* Productos */
-  .productos {
-    grid-template-columns: 1fr;
-  }
-
-  /* Carrito */
-  .cart-panel {
-    width: 90%;
-    max-width: 300px;
-  }
-
-  /* WhatsApp flotante */
-  .whatsapp-float span {
-    display: none;
-  }
+  const priceNum = formatPrice(price);
+  
+  cart.push({
+    name: productName,
+    price: priceNum
+  });
+  
+  updateCartCount();
+  renderCart();
+  alert(`${productName} agregado al carrito 🛒`);
 }
+
+function updateCartCount() {
+  const countEl = q("#cartCount");
+  if (countEl) countEl.textContent = cart.length;
+}
+
+function renderCart() {
+  const cartList = q("#cartItems");
+  const totalEl = q("#cartTotal");
+  if (!cartList || !totalEl) return;
+
+  if (cart.length === 0) {
+    cartList.innerHTML = '<li style="text-align: center; color: #999;">Tu carrito está vacío</li>';
+    totalEl.textContent = displayPrice(0);
+    return;
+  }
+
+  // Calcular total
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  // Renderizar productos
+  cartList.innerHTML = cart.map((item, i) => `
+    <li>
+      <div style="flex: 1;">
+        <div style="font-weight: 600; margin-bottom: 3px;">${item.name}</div>
+        <div style="color: #25D366; font-weight: 700;">${displayPrice(item.price)}</div>
+      </div>
+      <button onclick="removeFromCart(${i})" style="margin-left: 10px;">✖</button>
+    </li>
+  `).join("");
+
+  totalEl.textContent = displayPrice(total);
+}
+
+function removeFromCart(index) {
+  const removedItem = cart[index];
+  cart.splice(index, 1);
+  updateCartCount();
+  renderCart();
+  alert(`${removedItem.name} eliminado del carrito`);
+}
+
+// Hacer removeFromCart global para que funcione desde el HTML
+window.removeFromCart = removeFromCart;
+
+function initCartButtons() {
+  const buttons = qa(".btn-cart");
+  
+  buttons.forEach(btn => {
+    const container = btn.closest(".producto, .carousel-slide");
+    if (!container) return;
+    
+    const nameEl = container.querySelector("h3");
+    const price = container.getAttribute("data-precio");
+    
+    if (!nameEl || !price) {
+      console.warn("Producto sin nombre o precio", container);
+      return;
+    }
+    
+    const perfumeName = nameEl.textContent.trim();
+    
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      addToCart(perfumeName, price);
+    });
+  });
+}
+
+function initCheckout() {
+  const checkoutBtn = q("#checkoutBtn");
+  if (!checkoutBtn) return;
+
+  checkoutBtn.addEventListener("click", () => {
+    if (cart.length === 0) {
+      alert("Tu carrito está vacío. Agrega productos antes de finalizar el pedido.");
+      return;
+    }
+
+    // Calcular total
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+    // Crear mensaje para WhatsApp
+    const productList = cart.map(item => 
+      `   - ${item.name}: ${displayPrice(item.price)}`
+    ).join("\n");
+
+    const msg = [
+      "🛒 *Pedido desde la pagina WEB*",
+      "",
+      "📦 *Productos:*",
+      productList,
+      "",
+      `💰 *Total: ${displayPrice(total)}*`,
+      "",
+      "👋 Hola, quiero realizar este pedido. ¿Cuál es el siguiente paso?"
+    ].join("\n");
+
+    // Abrir WhatsApp
+    window.open(waUrl({ phone: WHATSAPP_NUMBER, text: msg }), "_blank");
+  });
+}
+
+function initCartToggle() {
+  const cartIcon = q("#cartIcon");
+  const cartPanel = q("#carritoPanel");
+  const closeBtn = q("#closeCart");
+  if (!cartIcon || !cartPanel) return;
+
+  cartIcon.addEventListener("click", () => {
+    cartPanel.classList.add("active");
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      cartPanel.classList.remove("active");
+    });
+  }
+
+  // Cerrar al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if (cartPanel.classList.contains('active') && 
+        !cartPanel.contains(e.target) && 
+        !cartIcon.contains(e.target)) {
+      cartPanel.classList.remove("active");
+    }
+  });
+}
+
+// ====== INICIALIZACIÓN GENERAL ======
+document.addEventListener("DOMContentLoaded", () => {
+  initFormToWhatsApp();     
+  initProductButtons();     
+  initHeaderWhatsApp();     
+  initCatalogFilters();     
+  initSmoothScroll();       
+  initCarouselInfinito();   
+  initCartButtons();        // ← Inicializa botones del carrito
+  initCheckout();           // ← Inicializa botón de finalizar pedido
+  initCartToggle();         // ← Inicializa apertura/cierre del carrito
+});
