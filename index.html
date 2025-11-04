@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfumes Fresh</title>
@@ -47,7 +44,6 @@
     </header>
 
 
-
     <!-- INICIO -->
 
     <section id="inicio" class="hero">
@@ -62,8 +58,7 @@
     </section>
 
 
-
-    <!-- BANNER DESTACADOS - NUEVO CARRUSEL INFINITO -->
+    <!-- BANNER DESTACADOS - CARRUSEL CON PRECIOS CORRECTOS -->
 
     <section class="destacados">
       <h2>Perfumes Destacados</h2>
@@ -78,56 +73,56 @@
           <div class="carousel-track" id="carouselTrack">
             
             <!-- Perfume 1 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-precio="50.000">
               <img src="img/Perfume1.jpg" alt="Perfume 1">
               <h3>Bharara Pharaoh Ramesses 100ml</h3>
               <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <!-- Perfume 2 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-precio="50.000">
               <img src="img/Perfume2.jpg" alt="Perfume 2">
               <h3>Kaiak URBE 100ml</h3>
               <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <!-- Perfume 3 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-precio="45.000">
               <img src="img/Perfume3.jpg" alt="Perfume 3">
               <h3>Bleu Nigth 100ml</h3>
               <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <!-- Perfume 4 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-precio="60.000">
               <img src="img/Perfume4.jpg" alt="Perfume 4">
               <h3>Natural Energy 50Ml</h3>
               <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <!-- Perfume 5 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-precio="40.000">
               <img src="img/Perfume5.jpg" alt="Perfume 5">
               <h3>Hugo Boss BLACK</h3>
               <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <!-- Perfume 6 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-precio="50.000">
               <img src="img/Perfume6.jpg" alt="Perfume 6">
               <h3>Acqua di gio</h3>
               <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <!-- Perfume 7 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-precio="60.000">
               <img src="img/Perfume7.jpg" alt="Perfume 7">
               <h3>BOMBSHELL 100ml</h3>
               <a class="btn-cart">Agregar al carrito</a>
             </div>
 
             <!-- Perfume 8 -->
-            <div class="carousel-slide">
+            <div class="carousel-slide" data-precio="45.000">
               <img src="img/Perfume8.jpg" alt="Perfume 8">
               <h3>Infini Elixir Maison Alhambra</h3>
               <a class="btn-cart">Agregar al carrito</a>
@@ -141,7 +136,6 @@
 
       </div>
     </section>
-
 
 
     <!-- CATÁLOGO -->
@@ -160,69 +154,83 @@
 
         <div class="productos">
 
-            <!-- CATEGORIA HOMBRE -->
+            <!-- CATEGORIA HOMBRE -->            
 
-            <div class="producto" data-category="hombre">
-
-                <img src="img/Perfume8.jpg" alt="Perfume8 ejemplo">
-                <h3>Infini Elixir Maison Alhambra</h3>                
-                <a class="btn-cart">Agregar al carrito</a>
-            </div>
-
-            <div class="producto" data-category="hombre">
+            <div class="producto" data-category="hombre" data-precio="50.000">
                 <img src="img/Perfume1.jpg" alt="Perfume 1">
-                <h3>Bharara Pharaoh Ramesses 100ml</h3>                
+                <h3>Bharara Pharaoh Ramesses 100ml</h3>             
                 <a class="btn-cart">Agregar al carrito</a>
             </div>
 
-            <div class="producto" data-category="hombre">
+            <div class="producto" data-category="hombre" data-precio="50.000">
                 <img src="img/Perfume2.jpg" alt="Perfume 2">
                 <h3>Kaiak URBE 10ML</h3>                
                 <a class="btn-cart">Agregar al carrito</a>
             </div>
 
-            <div class="producto" data-category="hombre">
+            <div class="producto" data-category="hombre" data-precio="45.000">
                 <img src="img/Perfume3.jpg" alt="Perfume 3">
                 <h3>Bleu Nigth 100ml</h3>                
                 <a class="btn-cart">Agregar al carrito</a>
             </div>
 
-            <div class="producto" data-category="hombre">
+            <div class="producto" data-category="hombre" data-precio="60.000">
                 <img src="img/Perfume4.jpg" alt="Perfume 4">
                 <h3>Natural Energy 50Ml</h3>                
                 <a class="btn-cart">Agregar al carrito</a>
             </div>
 
-            <div class="producto" data-category="hombre">
+            <div class="producto" data-category="hombre" data-precio="40.000">
                 <img src="img/Perfume5.jpg" alt="Perfume 5">
                 <h3>Hugo Boss BLACK</h3>                
                 <a class="btn-cart">Agregar al carrito</a>
             </div>
 
-            <div class="producto" data-category="hombre">
+            <div class="producto" data-category="hombre" data-precio="50.000">
                 <img src="img/Perfume6.jpg" alt="Perfume 6">
                 <h3>Acqua di gio</h3>                
                 <a class="btn-cart">Agregar al carrito</a>
             </div>
         
-            <!-- CAT HOMBRE -->
+            <!-- CAT MUJER -->
 
-            <div class="producto" data-category="mujer">
+            <div class="producto" data-category="mujer" data-precio="60.000">
                 <img src="img/Perfume7.jpg" alt="Perfume 7">
                 <h3>BOMBSHELL 10ml</h3>                
                 <a class="btn-cart">Agregar al carrito</a>
             </div>
 
-            <div class="producto" data-category="unisex">
+            <div class="producto" data-category="mujer" data-precio="50.000">
                 <img src="img/Perfume9.jpg" alt="Perfume 9">
                 <h3>EMEER LATTAFA 100ml</h3>                
                 <a class="btn-cart">Agregar al carrito</a>
-            </div>            
+            </div>
+
+            <div class="producto" data-category="mujer" data-precio="45.000">
+                <img src="img/Perfume8.jpg" alt="Perfume 8">
+                <h3>Infini Elixir Maison Alhambra</h3>                
+                <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
+
+            <!-- CAT UNISEX -->
+
+            <div class="producto" data-category="unisex" data-precio="45.000">
+                <img src="img/Perfume10.jpg" alt="Perfume 10">
+                <h3>KHAMRAH ARABE LATTAFA 100ml</h3>                
+                <a class="btn-cart">Agregar al carrito</a>
+            </div>
+
+            <div class="producto" data-category="unisex" data-precio="40.000">
+                <img src="img/Perfume11.jpg" alt="Perfume 11">
+                <h3>LATTAFA SUBLIME UNISEX 200ML</h3>                
+                <a class="btn-cart">Agregar al carrito</a>
+            </div>       
+            
             
         </div>
 
     </section>
-
 
 
     <!-- SERVICIOS -->
@@ -239,14 +247,6 @@
         </ul>
     </section>
     
-    
-    <section id="carrito" style="display:none;">
-      
-      <h2>Tu carrito</h2>
-      <ul id="cartItems"></ul>
-      <button id="checkoutBtn">Finalizar pedido</button>
-    </section>
-    
     <!-- FORMULARIO DE PEDIDO -->
     <section id="pedido">
         <h2>Formulario de Pedido</h2>
@@ -261,7 +261,6 @@
 
         </form>
     </section>
-
 
 <!-- Footer -->
 <footer id="contacto">
@@ -288,7 +287,6 @@
     <!-- Info adicional -->
     <div class="footer-info">
       <p>© 2025 Perfumes FRESH, Vive Fresco, Vive Fresh!! | Todos los derechos reservados</p>
-      <p>Email: juanca1881@hotmail.com</p>
     </div>
   </div>
 </footer>
@@ -309,7 +307,7 @@
     <ul id="cartItems" class="cart-items"></ul>
     
     <div class="cart-footer">
-      <p><strong>Total productos:</strong> <span id="cartTotal">0</span></p>
+      <p><strong>Total:</strong> <span id="cartTotal">$0</span></p>
       <button id="checkoutBtn">Finalizar pedido</button>
       <button id="closeCart" class="close-btn">Cerrar</button>
     </div>
