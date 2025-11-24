@@ -32,25 +32,12 @@ nav {
     padding: 1rem;
 }
 
-header nav a {
-    color: #ffffff;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-header nav a:hover {
-    background: #00c9a7;
-    color: #fff;
-}
-
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 1.5rem;
-    font-weight:bold
+    font-weight: bold;
 }
 
 .logo img {
@@ -74,29 +61,17 @@ header nav a:hover {
 
 .menu a {
     text-decoration: none;
-    color: #555;
-    font-weight: 500;
-    padding: 10px 20px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+    color: #ffffff;
     font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
 .menu a:hover {
-    color: #13dfb3;
-}
-
-.btn-cart {
-    background: #25D366;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s ease;
-}
-
-.btn-cart:hover {
-    background: #1ebe5d;
+    background: #00c9a7;
+    color: #fff;
 }
 
 /* ====== HERO ====== */
@@ -115,13 +90,15 @@ header nav a:hover {
     padding: 0 1rem;
 }
 
-/* Capa oscura encima de la imagen para mejorar contraste */
 .hero::before {
     content: "";
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.45);
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
     z-index: 1;
 }
 
@@ -165,6 +142,13 @@ header nav a:hover {
     border-top: 1px solid #eee;
 }
 
+#catalogo h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
 .filtros {
     text-align: center;
     margin-bottom: 2rem;
@@ -181,71 +165,73 @@ header nav a:hover {
     transition: all 0.3s ease;
 }
 
-.filtros button:hover,
-.filtros .is-active {
+.filtros button:hover {
     background: #c0392b;
     color: #fff;
     border-color: #c0392b;
 }
 
-.productos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+.filtros button.is-active {
+    background: #c0392b;
+    color: #fff;
+    border-color: #c0392b;
 }
 
-.producto {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    text-align: center;
-    padding: 1rem;
-    transition: all 0.3s ease;
+.catalog-carousel {
+    margin-top: 30px;
     opacity: 0;
-    transform: scale(0.95);
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.producto.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.producto:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.producto img {
+.catalog-carousel .carousel-container {
+    position: relative;
     max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    margin: 0 auto;
+    padding: 0 60px;
 }
 
-.producto h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #333;
+.catalog-carousel .carousel-track-container {
+    overflow: hidden;
+    width: 100%;
 }
 
-.producto p {
-    color: #777;
-    margin-bottom: 0.5rem;
+.catalog-carousel .carousel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+    width: fit-content;
 }
 
-.producto .btn-wapp {
-    display: inline-block;
-    margin-top: 0.5rem;
+/* Estilos para los precios */
+.producto .precio,
+.carousel-slide .precio {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #25D366;
+    margin: 0.5rem 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    text-align: center;
+    display: block;
+}
+
+.btn-cart {
     background: #25D366;
     color: white;
     padding: 0.5rem 1rem;
-    border-radius: 30px;
+    border-radius: 5px;
     text-decoration: none;
-    font-weight: 500;
     transition: background 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+    user-select: none;
+    margin-top: 0.5rem;
+    border: none;
+    font-size: 0.9rem;
+    font-family: inherit;
 }
 
-.producto .btn-wapp:hover {
+.btn-cart:hover {
     background: #1ebe5d;
 }
 
@@ -254,6 +240,13 @@ header nav a:hover {
     background: #fff;
     padding: 3rem 1rem;
     border-top: 1px solid #eee;
+}
+
+#servicios h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
 }
 
 #servicios ul {
@@ -282,6 +275,13 @@ header nav a:hover {
 #pedido {
     background: #f9f9f9;
     padding: 3rem 1rem;
+}
+
+#pedido h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
 }
 
 form {
@@ -318,18 +318,7 @@ form button:hover {
     background: #a93226;
 }
 
-/* ====== FOOTER ====== */
-footer a {
-    color: #c0392b;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    color: #e74c3c;
-}
-
-/* ====== CARRUSEL INFINITO PERSONALIZADO ====== */
+/* ====== CARRUSEL INFINITO (DESTACADOS) ====== */
 .destacados {
   text-align: center;
   padding: 50px 20px;
@@ -358,11 +347,17 @@ footer a:hover {
 .carousel-track {
   display: flex;
   gap: 20px;
-  animation: scroll 30s linear infinite;
   width: fit-content;
 }
 
-/* Animación continua */
+.destacados .carousel-track {
+  animation: scroll 30s linear infinite;
+}
+
+#catalogo .carousel-track {
+  animation: none !important;
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -372,7 +367,6 @@ footer a:hover {
   }
 }
 
-/* Cada slide */
 .carousel-slide {
   flex: 0 0 280px;
   width: 280px;
@@ -406,21 +400,10 @@ footer a:hover {
   justify-content: center;
 }
 
-.carousel-slide .btn-wapp {
-  display: inline-block;
-  margin: 0 15px 15px 15px;
-  background: #25D366;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s ease;
-  cursor: pointer;
-}
-
-.carousel-slide .btn-wapp:hover {
-  background: #1ebe5d;
+.carousel-slide .btn-cart {
+  display: block;
+  margin: 0 auto 15px auto;
+  width: fit-content;
 }
 
 /* Flechas de navegación */
@@ -428,27 +411,40 @@ footer a:hover {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   border: none;
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   transition: all 0.3s ease;
   color: #c0392b;
-  font-size: 24px;
-  font-weight: bold;
+}
+
+.carousel-arrow svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
 }
 
 .carousel-arrow:hover {
   background: #c0392b;
   color: white;
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 6px 20px rgba(192, 57, 43, 0.4);
+}
+
+.carousel-arrow:hover svg {
+  transform: scale(1.1);
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(1.05);
 }
 
 .carousel-arrow-left {
@@ -459,7 +455,7 @@ footer a:hover {
   right: 0;
 }
 
-/* Icono del wapp */
+/* ====== WHATSAPP FLOTANTE ====== */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
@@ -467,12 +463,10 @@ footer a:hover {
   display: flex;
   align-items: center;
   gap: 10px;  
-
   background-color: #fff;
   color: #25d366;
   border: 2px solid #25d366;
   border-radius: 30px;
-
   padding: 10px 20px;
   font-size: 16px;
   font-weight: 600;
@@ -505,8 +499,7 @@ footer a:hover {
     filter: brightness(0) invert(1);
 }
 
-/* Estilos iconos redes - FOOTER */
-
+/* ====== FOOTER ====== */
 footer {
   background-color: #000;
   color: #fff;
@@ -547,14 +540,12 @@ footer {
   text-shadow: 0 0 10px currentColor;
 }
 
-/* Colores específicos */
 .whatsapp { color: #25D366; }
 .instagram { color: #E1306C; }
 .tiktok { color: #25f4ee; }
 .tiktok:hover { color: #fe2c55; }
 
-/* Diseño carrito */
-
+/* ====== CARRITO ====== */
 .cart-icon {
   position: relative;
   cursor: pointer;
@@ -576,11 +567,11 @@ footer {
   padding: 2px 6px;
 }
 
-/* Panel lateral del carrito */
 .cart-panel {
   display: none;
   position: fixed;
-  top: 0; right: 0;
+  top: 0; 
+  right: 0;
   width: 320px;
   height: 100%;
   background: #fff;
@@ -669,15 +660,8 @@ footer {
   background: #a93226;
 }
 
-.btn-cart {
-  cursor: pointer;
-  display: inline-block;
-  user-select: none;
-}
-
-/* ====== RESPONSIVE SIMPLE Y EFECTIVO ====== */
+/* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
-  /* Header */
   .logo img {
     height: 65px;
   }
@@ -697,7 +681,6 @@ footer {
     font-size: 0.9rem;
   }
 
-  /* Hero */
   .hero-content h1 {
     font-size: 2rem;
   }
@@ -706,7 +689,6 @@ footer {
     font-size: 1.1rem;
   }
 
-  /* Carrusel ajustado */
   .carousel-container {
     padding: 0 45px;
   }
@@ -720,7 +702,20 @@ footer {
     height: 220px;
   }
 
-  /* Footer */
+  .catalog-carousel .carousel-container {
+    padding: 0 45px;
+  }
+
+  .carousel-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .carousel-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
   .footer-container {
     flex-direction: column;
     text-align: center;
@@ -733,8 +728,6 @@ footer {
 }
 
 @media (max-width: 480px) {
-  
-  /* Header compacto */
   .logo img {
     height: 55px;
   }
@@ -753,7 +746,6 @@ footer {
     margin-left: 10px;
   }
 
-  /* Hero */
   .hero-content h1 {
     font-size: 1.6rem;
   }
@@ -762,7 +754,6 @@ footer {
     font-size: 1rem;
   }
 
-  /* Carrusel más pequeño */
   .carousel-container {
     padding: 0 38px;
   }
@@ -776,24 +767,25 @@ footer {
     height: 200px;
   }
 
+  .catalog-carousel .carousel-container {
+    padding: 0 38px;
+  }
+
   .carousel-arrow {
     width: 35px;
     height: 35px;
-    font-size: 18px;
   }
 
-  /* Productos */
-  .productos {
-    grid-template-columns: 1fr;
+  .carousel-arrow svg {
+    width: 18px;
+    height: 18px;
   }
 
-  /* Carrito */
   .cart-panel {
     width: 90%;
     max-width: 300px;
   }
 
-  /* WhatsApp flotante */
   .whatsapp-float span {
     display: none;
   }
