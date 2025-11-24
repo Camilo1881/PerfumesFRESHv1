@@ -350,15 +350,24 @@ form button:hover {
   width: fit-content;
 }
 
+/* ANIMACIÓN INFINITA SOLO PARA DESTACADOS */
 .destacados .carousel-track {
-  animation: scroll 30s linear infinite;
+  animation: scroll-infinite 40s linear infinite;
+}
+
+.destacados .carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.destacados .carousel-slide:hover {
+  animation-play-state: paused;
 }
 
 #catalogo .carousel-track {
   animation: none !important;
 }
 
-@keyframes scroll {
+@keyframes scroll-infinite {
   0% {
     transform: translateX(0);
   }
@@ -690,30 +699,32 @@ footer {
   }
 
   .carousel-container {
-    padding: 0 45px;
+    padding: 0 50px;
   }
 
   .carousel-slide {
-    flex: 0 0 220px;
-    width: 220px;
+    flex: 0 0 250px;
+    width: 250px;
+    min-width: 250px;
   }
 
   .carousel-slide img {
-    height: 220px;
+    height: 250px;
+    min-height: 250px;
   }
 
   .catalog-carousel .carousel-container {
-    padding: 0 45px;
+    padding: 0 50px;
   }
 
   .carousel-arrow {
-    width: 42px;
-    height: 42px;
+    width: 45px;
+    height: 45px;
   }
 
   .carousel-arrow svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 
   .footer-container {
@@ -755,30 +766,32 @@ footer {
   }
 
   .carousel-container {
-    padding: 0 38px;
+    padding: 0 45px;
   }
 
   .carousel-slide {
-    flex: 0 0 200px;
-    width: 200px;
+    flex: 0 0 230px;
+    width: 230px;
+    min-width: 230px;
   }
 
   .carousel-slide img {
-    height: 200px;
+    height: 230px;
+    min-height: 230px;
   }
 
   .catalog-carousel .carousel-container {
-    padding: 0 38px;
+    padding: 0 45px;
   }
 
   .carousel-arrow {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
   }
 
   .carousel-arrow svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   .cart-panel {
