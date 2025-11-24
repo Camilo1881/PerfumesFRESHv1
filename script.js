@@ -92,7 +92,7 @@ function initCatalogFilters() {
   });
 }
 
-// ====== CARRUSELES DEL CATÁLOGO (MEJORADO) ====== //
+// ====== CARRUSELES DEL CATÁLOGO (MEJORADO PARA MÓVIL) ====== //
 function initCatalogCarousels() {
   const carouselContainers = qa(".catalog-carousel");
   
@@ -110,10 +110,14 @@ function initCatalogCarousels() {
     }
 
     let currentPosition = 0;
-    const slideWidth = 300;
-    const slidesToMove = 2;
+    
+    // Detectar si es móvil
+    const isMobile = window.innerWidth <= 768;
+    const slideWidth = isMobile ? 270 : 300; // Ancho de cada slide + gap
+    const slidesToMove = 1; // Mover de a uno para mejor control
     
     function updateCarousel() {
+      track.style.transition = 'transform 0.4s ease';
       track.style.transform = `translateX(${currentPosition}px)`;
     }
 
@@ -175,7 +179,7 @@ function initSmoothScroll() {
   });
 }
 
-// ====== CARRUSEL DESTACADOS (ESTE SÍ TIENE INFINITO) ====== //
+// ====== CARRUSEL DESTACADOS CON ANIMACIÓN INFINITA ====== //
 function initCarouselInfinito() {
   const track = document.getElementById('carouselTrack');
   const leftArrow = document.querySelector('.destacados .carousel-arrow-left');
@@ -186,51 +190,109 @@ function initCarouselInfinito() {
     return;
   }
 
+  // Duplicar slides para efecto infinito perfecto
   const slides = Array.from(track.children);
   slides.forEach(slide => {
     const clone = slide.cloneNode(true);
     track.appendChild(clone);
   });
 
+  let isManualControl = false;
+  let currentPosition = 0;
   const slideWidth = 300;
-  const animationDuration = 30;
+  const slidesToMove = 2;
 
-  function moveCarousel(direction) {
-    track.style.animationPlayState = 'paused';
-    
-    const currentTransform = getComputedStyle(track).transform;
-    let currentTranslate = 0;
-    
-    if (currentTransform !== 'none') {
-      const matrix = new DOMMatrix(currentTransform);
-      currentTranslate = matrix.m41;
-    }
-
-    if (direction === 'left') {
-      currentTranslate += slideWidth * 2;
+  function updatePosition(withTransition = true) {
+    if (withTransition) {
+      track.style.transition = 'transform 0.5s ease';
     } else {
-      currentTranslate -= slideWidth * 2;
+      track.style.transition = 'none';
+    }
+    track.style.transform = `translateX(${currentPosition}px)`;
+  }
+
+  function resumeAnimation() {
+    // Quitar control manual y restaurar animación
+    track.style.animation = 'scroll-infinite 40s linear infinite';
+    isManualControl = false;
+  }
+
+  function pauseAnimation() {
+    // Pausar animación y obtener posición actual
+    const computedStyle = window.getComputedStyle(track);
+    const matrix = new DOMMatrix(computedStyle.transform);
+    currentPosition = matrix.m41;
+    
+    track.style.animation = 'none';
+    track.style.transform = `translateX(${currentPosition}px)`;
+    isManualControl = true;
+  }
+
+  function moveLeft() {
+    if (!isManualControl) {
+      pauseAnimation();
     }
 
-    track.style.transform = `translateX(${currentTranslate}px)`;
-    track.style.animation = 'none';
-
-    setTimeout(() => {
-      track.style.animation = `scroll ${animationDuration}s linear infinite`;
-    }, 1500);
+    currentPosition += slideWidth * slidesToMove;
+    
+    // Control de límites para efecto infinito
+    const maxRight = 0;
+    if (currentPosition > maxRight) {
+      currentPosition = -(slideWidth * slides.length) + (currentPosition - maxRight);
+    }
+    
+    updatePosition();
+    
+    // Reanudar animación después de 3 segundos
+    setTimeout(resumeAnimation, 3000);
   }
+
+  function moveRight() {
+    if (!isManualControl) {
+      pauseAnimation();
+    }
+
+    currentPosition -= slideWidth * slidesToMove;
+    
+    // Control de límites para efecto infinito
+    const maxLeft = -(slideWidth * slides.length * 2);
+    if (currentPosition < maxLeft) {
+      currentPosition = -(slideWidth * slides.length) + (currentPosition - maxLeft);
+    }
+    
+    updatePosition();
+    
+    // Reanudar animación después de 3 segundos
+    setTimeout(resumeAnimation, 3000);
+  }
+
+  // Pausar al hacer hover en cualquier slide
+  const allSlides = track.querySelectorAll('.carousel-slide');
+  allSlides.forEach(slide => {
+    slide.addEventListener('mouseenter', () => {
+      track.style.animationPlayState = 'paused';
+    });
+    
+    slide.addEventListener('mouseleave', () => {
+      if (!isManualControl) {
+        track.style.animationPlayState = 'running';
+      }
+    });
+  });
 
   leftArrow.addEventListener('click', (e) => {
     e.preventDefault();
-    moveCarousel('left');
+    e.stopPropagation();
+    moveLeft();
   });
 
   rightArrow.addEventListener('click', (e) => {
     e.preventDefault();
-    moveCarousel('right');
+    e.stopPropagation();
+    moveRight();
   });
 
-  console.log('Carrusel destacados inicializado correctamente');
+  console.log('Carrusel destacados con animación infinita inicializado');
 }
 
 // ====== MOSTRAR PRECIOS AUTOMÁTICAMENTE ====== //
@@ -422,7 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCartToggle();
   showPrices();
   
-  // Inicia carruseles y botones del catálogo
+  // Inicializar carruseles y botones del catálogo
   initCatalogCarousels();
   initCartButtons();
   
